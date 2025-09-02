@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notepad Launcher</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e293b;
+        }
+        
+        .launcher-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .launcher-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .launcher-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .launcher-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .launch-btn {
+            background: #3b82f6;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .launch-btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+        }
+        
+        .launch-btn:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="launcher-container">
+        <div class="launcher-icon">📝</div>
+        <h1 class="launcher-title">Web Notepad</h1>
+        <p class="launcher-subtitle">Your personal note-taking companion</p>
+        <button class="launch-btn" onclick="openNotepad()">
+            Open Notepad
+        </button>
+    </div>
+
+    <script>
+        function openNotepad() {
+            // Open notepad in popup window
+            const popup = window.open(
+                'index.html', 
+                'notepad', 
+                'width=1000,height=700,resizable=yes,scrollbars=yes,status=no,toolbar=no,menubar=no,location=no'
+            );
+            
+            if (popup) {
+                popup.focus();
+            } else {
+                alert('Popup blocked! Please allow popups for this site and try again.');
+            }
+        }
+        
+        // Auto-open notepad on page load (optional)
+        // window.addEventListener('load', openNotepad);
+    </script>
+</body>
+</html>

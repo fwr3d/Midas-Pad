@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Notepad</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1><i class="fas fa-sticky-note"></i> Notes</h1>
+                <button id="newNoteBtn" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> New Note
+                </button>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search notes..." class="search-input">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <div class="notes-list" id="notesList">
+                <!-- Notes will be dynamically added here -->
+            </div>
+            
+            <div class="sidebar-footer">
+                <!-- Web sync removed for simplicity -->
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div id="welcomeScreen" class="welcome-screen">
+                <div class="welcome-content">
+                    <i class="fas fa-sticky-note welcome-icon"></i>
+                    <h2>Welcome to Web Notepad</h2>
+                    <p>Create your first note to get started!</p>
+                    <button id="createFirstNote" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Create Your First Note
+                    </button>
+                </div>
+            </div>
+            
+            <div id="editorContainer" class="editor-container" style="display: none;">
+                <div class="editor-header">
+                    <input type="text" id="noteTitle" placeholder="Note Title" class="note-title-input">
+                    <div class="editor-actions">
+                        <button id="deleteNoteBtn" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                        <button id="saveNoteBtn" class="btn btn-success">
+                            <i class="fas fa-save"></i> Save
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Formatting Toolbar -->
+                <div class="formatting-toolbar">
+                    <div class="toolbar-group">
+                        <label for="fontFamily" class="toolbar-label">Font:</label>
+                        <select id="fontFamily" class="toolbar-select">
+                            <option value="Arial, sans-serif">Arial</option>
+                            <option value="'Times New Roman', serif">Times New Roman</option>
+                            <option value="'Courier New', monospace">Courier New</option>
+                            <option value="Georgia, serif">Georgia</option>
+                            <option value="Verdana, sans-serif">Verdana</option>
+                            <option value="'Helvetica Neue', sans-serif">Helvetica</option>
+                            <option value="'Comic Sans MS', cursive">Comic Sans</option>
+                        </select>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <label for="fontSize" class="toolbar-label">Size:</label>
+                        <select id="fontSize" class="toolbar-select">
+                            <option value="12px">12px</option>
+                            <option value="14px">14px</option>
+                            <option value="16px" selected>16px</option>
+                            <option value="18px">18px</option>
+                            <option value="20px">20px</option>
+                            <option value="24px">24px</option>
+                            <option value="28px">28px</option>
+                            <option value="32px">32px</option>
+                        </select>
+                    </div>
+                    
+                    <div class="toolbar-separator"></div>
+                    
+                    <div class="toolbar-group">
+                        <button id="boldBtn" class="toolbar-btn" title="Bold (Ctrl+B)">
+                            <i class="fas fa-bold"></i>
+                        </button>
+                        <button id="italicBtn" class="toolbar-btn" title="Italic (Ctrl+I)">
+                            <i class="fas fa-italic"></i>
+                        </button>
+                        <button id="underlineBtn" class="toolbar-btn" title="Underline (Ctrl+U)">
+                            <i class="fas fa-underline"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-separator"></div>
+                    
+                    <div class="toolbar-group">
+                        <button id="alignLeftBtn" class="toolbar-btn" title="Align Left">
+                            <i class="fas fa-align-left"></i>
+                        </button>
+                        <button id="alignCenterBtn" class="toolbar-btn" title="Align Center">
+                            <i class="fas fa-align-center"></i>
+                        </button>
+                        <button id="alignRightBtn" class="toolbar-btn" title="Align Right">
+                            <i class="fas fa-align-right"></i>
+                        </button>
+                        <button id="alignJustifyBtn" class="toolbar-btn" title="Justify">
+                            <i class="fas fa-align-justify"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-separator"></div>
+                    
+                    <div class="toolbar-group">
+                        <button id="bulletListBtn" class="toolbar-btn" title="Bullet List">
+                            <i class="fas fa-list-ul"></i>
+                        </button>
+                        <button id="numberListBtn" class="toolbar-btn" title="Numbered List">
+                            <i class="fas fa-list-ol"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-separator"></div>
+                    
+                    <div class="toolbar-group">
+                        <label for="textColor" class="toolbar-label">Text:</label>
+                        <input type="color" id="textColor" class="toolbar-color" value="#ffffff" title="Text Color">
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <label for="highlightColor" class="toolbar-label">Highlight:</label>
+                        <input type="color" id="highlightColor" class="toolbar-color" value="#ffff00" title="Highlight Color">
+                    </div>
+                    
+                    <div class="toolbar-separator"></div>
+                    
+                    <div class="toolbar-group">
+                        <button id="undoBtn" class="toolbar-btn" title="Undo (Ctrl+Z)">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                        <button id="redoBtn" class="toolbar-btn" title="Redo (Ctrl+Y)">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-separator"></div>
+                    
+                    <div class="toolbar-group">
+                        <button id="clearFormatBtn" class="toolbar-btn" title="Clear Formatting">
+                            <i class="fas fa-remove-format"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="editor-content">
+                    <textarea id="noteContent" placeholder="Start writing your note..." class="note-content-textarea"></textarea>
+                </div>
+                
+                <div class="editor-footer">
+                    <div class="note-info">
+                        <span id="noteDate" class="note-date"></span>
+                        <span id="wordCount" class="word-count">0 words</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <script src="script.js"></script>
+</body>
+</html>
